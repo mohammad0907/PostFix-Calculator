@@ -183,7 +183,7 @@ public class Calculator extends Application {
             
         }
           
-         outputText.setText(String.valueOf(result(strArray)));
+         outputText.setText(result(strArray));
          currentString = "";
       }
     
@@ -193,13 +193,15 @@ public class Calculator extends Application {
     
     }
     
-    public static double result(ArrayList<String>expr){
+    public static String result(ArrayList<String>expr){
         Stack<Double>stack = new Stack<>();
-       
-        for(int i = 0; i < expr.size(); i++){
-            if(!expr.get(i).equals("+" ) && !expr.get(i).equals("-" ) && !expr.get(i).equals("*" )&& !expr.get(i).equals("/" )){
+        String result = "";
+        
+        try{
+            for(int i = 0; i < expr.size(); i++){
+                if(!expr.get(i).equals("+" ) && !expr.get(i).equals("-" ) && !expr.get(i).equals("*" )&& !expr.get(i).equals("/" )){
                 stack.push(Double.parseDouble(expr.get(i)));
-        }else{
+                }else{
                 double operOne = stack.pop();
                 double operTwo = stack.pop();
                 
@@ -213,10 +215,16 @@ public class Calculator extends Application {
                     stack.push(operTwo / operOne);
                 }else{
                     
+                    }
                 }
             }
-    }
-        return stack.pop();
+            result = String.valueOf(stack.pop());
+            
+        }catch(Exception e){
+            result = "Invalid expression";
+        }
+        
+        return result;
     }
 
     @Override
