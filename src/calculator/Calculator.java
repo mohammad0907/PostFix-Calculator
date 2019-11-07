@@ -220,6 +220,10 @@ public class Calculator extends Application {
             }
             result = String.valueOf(stack.pop());
             
+            if(result.equals("Infinity")){
+                result = "Cant Divide by 0";
+            }
+            
         }catch(Exception e){
             result = "Invalid expression";
         }
