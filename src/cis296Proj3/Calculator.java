@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package calculator;
+package cis296Proj3;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Stack;
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -14,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
@@ -218,7 +216,12 @@ public class Calculator extends Application {
                     }
                 }
             }
-            result = String.valueOf(stack.pop());
+            
+            if(stack.size() == 1){
+                result = String.valueOf(stack.pop());
+            } else{
+                throw new Exception(); 
+            }
             
             if(result.equals("Infinity")){
                 result = "Cant Divide by 0";
